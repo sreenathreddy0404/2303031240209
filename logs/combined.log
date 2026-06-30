@@ -1,0 +1,63 @@
+[2026-06-30 15:43:46] INFO: MongoDB Connected: ac-kxys5o8-shard-00-00.gsbaijy.mongodb.net
+[2026-06-30 15:43:46] INFO: Redis Client Connected
+[2026-06-30 15:43:46] ERROR: Redis Client Error: ERR unknown command `HELLO`, with args beginning with: `3`, 
+[2026-06-30 15:43:46] INFO: Redis Client Connected
+[2026-06-30 15:43:46] ERROR: Redis Client Error: ERR unknown command `HELLO`, with args beginning with: `3`, 
+[2026-06-30 15:43:46] INFO: Redis Client Connected
+[2026-06-30 15:43:46] ERROR: Redis Client Error: ERR unknown command `HELLO`, with args beginning with: `3`, 
+[2026-06-30 15:43:47] INFO: Redis Client Connected
+[2026-06-30 15:43:47] ERROR: Redis Client Error: ERR unknown command `HELLO`, with args beginning with: `3`, 
+[2026-06-30 15:43:47] INFO: Redis Client Connected
+[2026-06-30 15:43:47] ERROR: Redis Client Error: ERR unknown command `HELLO`, with args beginning with: `3`, 
+[2026-06-30 15:43:48] INFO: Redis Client Connected
+[2026-06-30 15:43:48] ERROR: Redis Client Error: ERR unknown command `HELLO`, with args beginning with: `3`, 
+[2026-06-30 15:43:50] INFO: Redis Client Connected
+[2026-06-30 15:43:50] ERROR: Redis Client Error: ERR unknown command `HELLO`, with args beginning with: `3`, 
+[2026-06-30 15:43:52] INFO: Redis Client Connected
+[2026-06-30 15:43:52] ERROR: Redis Client Error: ERR unknown command `HELLO`, with args beginning with: `3`, 
+[2026-06-30 15:43:54] INFO: Redis Client Connected
+[2026-06-30 15:43:54] ERROR: Redis Client Error: ERR unknown command `HELLO`, with args beginning with: `3`, 
+[2026-06-30 15:43:56] INFO: Redis Client Connected
+[2026-06-30 15:43:56] ERROR: Redis Client Error: ERR unknown command `HELLO`, with args beginning with: `3`, 
+[2026-06-30 15:43:58] INFO: Redis Client Connected
+[2026-06-30 15:43:58] ERROR: Redis Client Error: ERR unknown command `HELLO`, with args beginning with: `3`, 
+[2026-06-30 15:44:00] INFO: Redis Client Connected
+[2026-06-30 15:44:00] ERROR: Redis Client Error: ERR unknown command `HELLO`, with args beginning with: `3`, 
+[2026-06-30 15:44:02] INFO: Redis Client Connected
+[2026-06-30 15:44:02] ERROR: Redis Client Error: ERR unknown command `HELLO`, with args beginning with: `3`, 
+[2026-06-30 15:44:05] INFO: Redis Client Connected
+[2026-06-30 15:44:05] ERROR: Redis Client Error: ERR unknown command `HELLO`, with args beginning with: `3`, 
+[2026-06-30 15:44:07] INFO: Redis Client Connected
+[2026-06-30 15:44:07] ERROR: Redis Client Error: ERR unknown command `HELLO`, with args beginning with: `3`, 
+[2026-06-30 15:44:09] INFO: Redis Client Connected
+[2026-06-30 15:44:09] ERROR: Redis Client Error: ERR unknown command `HELLO`, with args beginning with: `3`, 
+[2026-06-30 15:44:11] INFO: Redis Client Connected
+[2026-06-30 15:44:11] ERROR: Redis Client Error: ERR unknown command `HELLO`, with args beginning with: `3`, 
+[2026-06-30 15:44:13] INFO: Redis Client Connected
+[2026-06-30 15:44:13] ERROR: Redis Client Error: ERR unknown command `HELLO`, with args beginning with: `3`, 
+[2026-06-30 15:44:15] INFO: Redis Client Connected
+[2026-06-30 15:44:15] ERROR: Redis Client Error: ERR unknown command `HELLO`, with args beginning with: `3`, 
+[2026-06-30 15:44:17] INFO: Redis Client Connected
+[2026-06-30 15:44:17] ERROR: Redis Client Error: ERR unknown command `HELLO`, with args beginning with: `3`, 
+[2026-06-30 15:44:20] INFO: Redis Client Connected
+[2026-06-30 15:44:20] ERROR: Redis Client Error: ERR unknown command `HELLO`, with args beginning with: `3`, 
+[2026-06-30 15:44:22] INFO: Redis Client Connected
+[2026-06-30 15:44:22] ERROR: Redis Client Error: ERR unknown command `HELLO`, with args beginning with: `3`, 
+[2026-06-30 15:45:00] INFO: MongoDB Connected: ac-kxys5o8-shard-00-00.gsbaijy.mongodb.net
+[2026-06-30 15:45:01] INFO: Redis Client Connected
+[2026-06-30 15:45:01] INFO: Server is running on port 3000
+[2026-06-30 15:45:35] INFO: POST /api/auth/register
+[2026-06-30 15:46:47] INFO: POST /api/auth/login
+[2026-06-30 15:47:44] INFO: POST /api/notifications/mock
+[2026-06-30 15:47:52] INFO: POST /api/notifications/mock
+[2026-06-30 15:48:17] INFO: POST /api/notifications/mock
+[2026-06-30 15:48:26] INFO: POST /api/notifications/mock
+[2026-06-30 15:48:35] INFO: POST /api/notifications/mock
+[2026-06-30 15:49:05] INFO: GET /api/notifications?page=1&limit=2
+[2026-06-30 15:49:24] INFO: GET /api/notifications/placement-students%0AHeaders:%20Au
+[2026-06-30 15:49:33] INFO: GET /api/notifications/placement-students%0AHeaders:%20Au
+[2026-06-30 15:49:58] INFO: GET /api/notifications/placement-student
+[2026-06-30 15:50:06] INFO: GET /api/notifications/placement-students
+[2026-06-30 15:57:23] INFO: GET /api/notifications/YOUR_NOTIFICATION_ID/read
+[2026-06-30 15:57:40] INFO: PATCH /api/notifications/6a4397f2023a052008c920da/read
+[2026-06-30 15:58:17] INFO: PATCH /api/notifications/read-all
