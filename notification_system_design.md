@@ -229,3 +229,62 @@ db.notifications.createIndex(
   { expireAfterSeconds: 7776000 }
 )
 ```
+
+
+# Stage 3
+
+## The Query
+
+```js
+db.notifications.find(
+  { studentID: 1042, isRead: false }
+).sort({ createdAt: -1 })
+```
+
+## Is this query correct?
+
+yeah the query is correct. it finds all unread notifications for student 1042 and sorts by latest first.
+
+## Why is it slow?
+
+the problem is `.find()` without an index — mongodb will scan every single document in the collection with 5,000,000 documents that is very slow.
+
+## What i would change
+
+add index on `studentID` and `createdAt` so mongodb can directly go to that student's data.
+
+```js
+db.notifications.find(
+  { studentID: 1042, isRead: false },
+).sort({ createdAt: -1 })
+```
+
+```js
+db.notifications.createIndex({ studentID: 1, createdAt: -1 })
+```
+
+## Computation cost
+
+without index — mongodb scans all 5 million documents. O(n) cost. very slow.
+
+with index — mongodb directly jumps to student 1042 documents. much faster, close to O(log n).
+
+## Another dev says: add index on every field
+
+this is not good advice. adding index on every field will:
+- make insert and update slow because every index needs to update
+- takes up more disk space
+- mongodb has to maintain all those indexes even for fields we never query on
+
+only add index on fields we actually filter or sort on. adding everywhere creates more problems than it solves.
+
+## Query — students who got placement notification in last 7 days
+
+```js
+db.notifications.distinct("studentID", {
+  notificationType: "Placement",
+  createdAt: { $gte: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) }
+})
+```
+
+this gives list of unique studentIDs who got atleast one placement notification in last 7 days. used `.distinct()` so same student doesnt repeat.
