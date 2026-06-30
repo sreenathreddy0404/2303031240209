@@ -15,6 +15,7 @@
 ![Paginated Notifications](./docs/screenshots/notifications_list.png)
 
 ### 5. Find Placement Students in Last 7 Days (`GET /api/notifications/placement-students`)
+![placement students](./docs/screenshots/placement_students.png)
 
 ### 6. Read a Notification (`PATCH /api/notifications/:id/read`)
 ![Read Notification](./docs/screenshots/read_notification.png)
