@@ -288,3 +288,57 @@ db.notifications.distinct("studentID", {
 ```
 
 this gives list of unique studentIDs who got atleast one placement notification in last 7 days. used `.distinct()` so same student doesnt repeat.
+
+---
+
+# Stage 4
+
+## The Problem
+
+every time a student loads a page, it hits the db to fetch notifications. with 50,000 students doing this all the time, db is getting too many requests and slowing down for everyone.
+
+## Solutions
+
+### 1. Cache the notifications (Redis)
+
+we use redis for cache to store frequently accessed notifications. for example if a student loads the page and we already have his notifications in redis cache, we serve it from cache otherwise we query the db and store it in cache for 60 seconds.
+
+**tradeoffs:**
+- good — we avoid hitting db every time.
+- bad — students will see new notification once in 60 seconds. but it's not a big deal.
+
+---
+
+### 2. Pagination — dont load everything at once
+
+implementing pagination instead of loading all documents at once, we load 10 to 20 documents per page and if user wants to see more we load next page. this way we avoid sending large data to client and also reduce the load on database.
+
+```js
+db.notifications.find({ studentID: 1042 })
+  .sort({ createdAt: -1 })
+  .skip(0)
+  .limit(10)
+```
+
+**tradeoffs:**
+- good — less data per request, db does less work, faster response
+- bad — need to handle pagination logic in frontend too. little more work but totally worth it.
+
+
+### 3. Add index on studentID
+
+this one is basic but very impactful. without index mongodb scans all documents. with index it directly finds that student's data.
+
+```js
+db.notifications.createIndex({ studentID: 1, createdAt: -1 })
+```
+
+**tradeoffs:**
+- good — queries become much faster, basically free performance improvement
+- bad — index takes extra storage and slows down writes slightly. but for a read heavy system like notifications this is always worth it.
+
+---
+
+## What i would do
+
+first add the index. then add pagination so we dont send all notifications at once. then add redis cache to avoid repeated db hits. this order gives max performance with least effort.
