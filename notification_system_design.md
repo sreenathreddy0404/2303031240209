@@ -141,7 +141,7 @@ Authorization: Bearer <token>
 
 I'm going to use mongodb for this system.
 
-Mongodb stores each notification as a simple document. and also it is easy to scale the mongodb documents as the users grows. Mongodb has flexible schema so in future if i need to change the schema this is the best choice. and also Notification system doesn't need complex joins.
+mongodb stores each notification as a simple document. and also it is easy to scale the mongodb documents as the users grows. Mongodb has flexible schema so in future if i need to change the schema this is the best choice. and also Notification system doesn't need complex joins.
 by considering all of this mongodb is the best choice.
 ---
 
@@ -342,3 +342,38 @@ db.notifications.createIndex({ studentID: 1, createdAt: -1 })
 ## What i would do
 
 first add the index. then add pagination so we dont send all notifications at once. then add redis cache to avoid repeated db hits. this order gives max performance with least effort.
+
+---
+
+# Stage 5
+
+## Proposed Implementation (Original Pseudocode)
+
+Here is the initial design proposed for sending notifications to all students:
+
+```python
+function notify_all(student_ids: array, message: string):
+    for student_id in student_ids:
+        send_email(student_id, message) # calls Email API
+        save_to_db(student_id, message) # DB insert
+        push_to_app(student_id, message) # real-time push
+```
+
+### What this original code does:
+It takes a list of student IDs and loops through them one by one. In every iteration, it makes an external network call to send an email, performs a database insertion, and attempts to push the notification to the app.
+
+---
+
+## Shortcomings in current code
+1. **Very Slow:** Loop runs one-by-one. 50k emails/db writes sequentially will take hours and crash the server.
+2. **No Error Handling:** If `send_email` fails midway (like for the 200 students), the whole loop stops. Remaining students get nothing.
+3. **External API dependancy:** Email api is slow. Blocking db writes and app pushes for email to finish is bad.
+
+## Should saving to DB and sending email happen together?
+No. DB insert is fast, email is slow. If we do both together, any email API delay will lock the DB connections. We should write to DB first, then handle emails separately in background.
+
+## Redesign for Speed and Reliability
+We should use **Bulk DB Insert** and a **Task Queue** (like BullMQ / Redis).
+
+1. **Bulk insert** notifications to MongoDB in a single query.
+2. **Push jobs to Queue** for email and app push. Queue workers will process them in parallel and auto-retry if failed.
